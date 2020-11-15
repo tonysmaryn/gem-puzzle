@@ -48,7 +48,7 @@ function isSolvable() {
   cells.sort(() => Math.random() - 0.5);
   let inversions = 0;
   let isSolve = false;
-  while (!isSolve) {
+  while (isSolve) {
     for (let i = 0; i < cellNum; i += 1) {
       for (let j = 0; j < i; j += 1) {
         if (cells[j].innerHTML > cells[i].innerHTML) {
@@ -72,6 +72,7 @@ function setClick() {
 
 function isSolved() {
   if (cells.every((v, i) => v === win[i])) {
+    console.log('Win');
     clickDiv.insertAdjacentElement('afterend', '<p>Вы выиграли!</p>');
   }
 }
