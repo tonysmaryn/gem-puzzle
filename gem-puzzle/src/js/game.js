@@ -7,15 +7,22 @@ export default class Game {
     this.a = true;
   }
 
-  createBoard(boardSize) {
+  createBoard(boardSize, boardWidth, isImgChecked) {
     this.gameSize = boardSize;
     this.cellNum = boardSize * boardSize - 1;
     this.cells = [];
     this.win = [];
-    for (let i = 1; i <= this.cellNum; i += 1) {
+    const imageSrc = `https://raw.githubusercontent.com/irinainina/image-data/master/box/${Math.floor(Math.random() * 150)}.jpg`;
+    for (let i = 0; i < this.cellNum; i += 1) {
       const cell = document.createElement('div');
       cell.className = 'cell';
-      cell.innerHTML = i;
+      cell.innerHTML = i + 1;
+      if (isImgChecked) {
+        cell.style.backgroundImage = `url(${imageSrc})`;
+        const left = Math.floor(boardWidth / boardSize) * (i % boardSize);
+        const top = Math.floor(boardWidth / boardSize) * Math.floor(i / boardSize);
+        cell.style.backgroundPosition = `-${left}px -${top}px`;
+      }
       this.cells.push(cell);
       this.win.push(cell);
     }
