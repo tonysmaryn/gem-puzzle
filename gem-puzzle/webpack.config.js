@@ -12,10 +12,10 @@ const jsLoader = () => {
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './js/index.js',
+    main: './js/board.js',
   },
   output: {
-    filename: 'index.js',
+    filename: 'board.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
@@ -47,6 +47,14 @@ module.exports = {
       {
         test: /\.js$/,
         use: jsLoader(),
+      },
+      {
+        test: /\.mp3$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },
