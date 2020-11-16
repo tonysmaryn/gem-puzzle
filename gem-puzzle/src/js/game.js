@@ -12,7 +12,7 @@ export default class Game {
     this.cellNum = boardSize * boardSize - 1;
     this.cells = [];
     this.win = [];
-    const imageSrc = `https://raw.githubusercontent.com/irinainina/image-data/master/box/${Math.floor(Math.random() * 150)}.jpg`;
+    const imageSrc = `https://raw.githubusercontent.com/irinainina/image-data/master/box/${Math.floor(Math.random() * 149) + 1}.jpg`;
     for (let i = 0; i < this.cellNum; i += 1) {
       const cell = document.createElement('div');
       cell.className = 'cell';
@@ -46,6 +46,13 @@ export default class Game {
     const x = this.cells.indexOf(this.empty);
     const y = this.cells.indexOf(cell);
     [this.cells[x], this.cells[y]] = [this.cells[y], this.cells[x]];
+    this.isSolved();
+  }
+
+  isSolved() {
+    if (this.cells.every((el, i) => el === this.win[i])) {
+      console.log('You Win!');
+    }
   }
 
   isSolvable() {
