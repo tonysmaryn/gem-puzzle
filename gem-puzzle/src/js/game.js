@@ -51,7 +51,7 @@ export default class Game {
 
   isSolved() {
     if (this.cells.every((el, i) => el === this.win[i])) {
-      console.log('You Win!');
+      alert('You Win!');
     }
   }
 

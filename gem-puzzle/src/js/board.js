@@ -6,14 +6,11 @@ class Board {
     this.game = new Game();
     this.boardSize = 4;
     this.clicks = 0;
-    this.min = 0;
-    this.sec = 0;
     this.gameStart = false;
     this.generateBoard();
     this.changeSize();
     this.addImage();
     this.restart();
-    this.setTimer();
   }
 
   generateBoard() {
@@ -26,7 +23,6 @@ class Board {
     this.checkSize = document.createElement('select');
     this.checkSize.innerHTML = '<option>3x3</option><option selected>4x4</option><option>5x5</option><option>6x6</option><option>7x7</option><option>8x8</option>';
     this.body.append(this.checkSize);
-    // TODO: Implement style
     this.body.insertAdjacentHTML('beforeend', '<br />');
     this.checkImageLabel = document.createElement('label');
     this.body.appendChild(this.checkImageLabel);
@@ -89,41 +85,9 @@ class Board {
     }
   }
 
-  setTimer() {
-    this.field.addEventListener('click', () => {
-      this.gameStart = true;
-      this.setTimer();
-    });
-    if (this.gameStart) {
-      console.log('startTimer');
-      setInterval(() => { this.tick(); }, 1000);
-    }
-  }
-
-  tick() {
-    this.sec += 1;
-    if (this.sec >= 60) {
-      this.min += 1;
-      this.sec = 0;
-    }
-    if (this.sec < 10) {
-      if (this.min < 10) {
-        this.timerDiv.innerHTML = `0${this.min}:0${this.sec}`;
-      } else {
-        this.timerDiv.innerHTML = `${this.min}:0${this.sec}`;
-      }
-    } else if (this.min < 10) {
-      this.timerDiv.innerHTML = `0${this.min}:${this.sec}`;
-    } else {
-      this.timerDiv.innerHTML = `${this.min}:${this.sec}`;
-    }
-  }
-
   restart() {
     this.restartButton.addEventListener('click', () => {
       this.init();
-      this.min = 0;
-      this.sec = 0;
     });
   }
 }
